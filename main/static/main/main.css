@@ -1,0 +1,27 @@
+/* {
+	margin: 0;
+	padding: 0;
+	color: green;
+} */
+
+.summary-table {
+	color: green;
+}
+
+.highs {
+	color: red;
+	font-size: 2.5em;
+}
+
+.lows {
+	color: blue;
+	font-size: 2.5em;
+}
+
+.current-conditions {
+	color: green;
+}
+
+.detailed-forecast {
+	color: green;
+}

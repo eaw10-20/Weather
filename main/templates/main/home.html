@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="This is a website for weather">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather Page</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+	<!--
+	<style>
+		.highs {
+		  color: red;
+		}
+
+		.lows {
+		  color: blue;
+		}
+	</style>
+-->
+</head>
+<body>
+	<header>
+	</header>
+	<main>
+		<div class="summary-table">
+			<table>
+				<caption><h3>Forecast for Menifee, CA</h3></caption>
+				<!-- Day -->
+				<tr>
+					{% for i in forecast %}
+						{% if i.isDaytime == True or i.number == 1 %}
+							<th>{{i.name}}</th>
+						{% endif %}
+					{% endfor %}
+				</tr>
+				<!-- Weather image -->
+				<tr>
+					{% for i in forecast %}
+						{% if i.isDaytime == True or i.number == 1 %}
+							<td>
+								<img src={{i.icon}} alt={{i.shortForecast}}>
+							</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+				<!-- High Temperature -->
+				<tr class="highs">
+					{% for i in forecast %}
+						{% if i.isDaytime == True %}
+							<td>{{i.temperature}} {{i.temperatureUnit}}</td>
+						{% elif i.number == 1 %}
+							<td> </td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+				<!-- Low Temperature -->
+				<tr class="lows">
+					{% for i in forecast %}
+						{% if i.isDaytime == False %}
+							<td>{{i.temperature}} {{i.temperatureUnit}}</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			</table>
+		</div>
+		<hr>
+		<div class="current-conditions">
+			<!--Current conditons can go here.-->
+			<table>
+				<!--Location-->
+				<tr>
+					<td>{{c_key.0}}</td>
+					<td>{{c_val.0}}</td>
+				</tr>
+				<!--Temperature F, Sky-->
+				<tr>
+					<td>{{c_key.2}}</td>
+					<td>{{c_val.2}}</td>
+					<td>{{c_key.1}}</td>
+					<td>{{c_val.1}}</td>
+				</tr>
+				<!--Temperature C, Wind Speed-->
+				<tr>
+					<td>{{c_key.3}}</td>
+					<td>{{c_val.3}}</td>
+					<td>{{c_key.5}}</td>
+					<td>{{c_val.5}}</td>
+				</tr>
+				<!--Humidity, Barometer-->
+				<tr>
+					<td>{{c_key.4}}</td>
+					<td>{{c_val.4}}</td>
+					<td>{{c_key.6}}</td>
+					<td>{{c_val.6}}</td>
+				</tr>
+				<!--Dewpoint, Visibility-->
+				<tr>
+					<td>{{c_key.7}}</td>
+					<td>{{c_val.7}}</td>
+					<td>{{c_key.8}}</td>
+					<td>{{c_val.8}}</td>
+				</tr>
+				<tr>
+					<td>{{c_key.9}}</td>
+					<td>{{c_val.9}}</td>
+				</tr>
+			</table>
+		</div>
+		<hr>
+		<div class="detailed-forecast">
+			<h3>Extended Forecast</h3>
+			{% for i in forecast %}
+				<h5 class="list1">{{i.name}}</h5>
+				<p class="list1">{{i.detailedForecast}}</p>
+			{% endfor %}
+		</div>
+	</main>
+	<footer>
+		<a href="https://www.google.com">Google</a>
+	</footer>
+</body>
+</html>
+	
